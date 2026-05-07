@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message for Ayuu ❤️</title>
+    <title>For Ayuu ❤️</title>
     <style>
-        /* Define cute fonts from Google */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Varela+Round&family=Pacifico&display=swap');
 
         :root {
-            /* Cute Color Palette */
-            --bg-color: #fff5f8;
-            --primary-pink: #ffb7c5; /* Soft pink */
-            --accent-pink: #ff8fa3;  /* Darker pink */
-            --text-color: #5d4037;   /* Soft brown for readability */
-            --envelope-color: #ffe3e3;
-            --letter-bg: #ffffff;
-            --heart-color: #ff6b81;
+            --bg-color: #fff0f3;
+            --primary-pink: #ffb3c6;
+            --accent-pink: #ff8fab;
+            --deep-pink: #fb6f92;
+            --text-color: #590d22;
+            --white: #ffffff;
         }
 
         * {
@@ -25,6 +22,7 @@
             padding: 0;
         }
 
+        /* Custom Heart Cursor */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -32,26 +30,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
-            /* Decorative background gradient */
-            background-image: radial-gradient(#ffdde1 1px, transparent 1px), radial-gradient(#ffdde1 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            background-image: radial-gradient(var(--primary-pink) 1px, transparent 1px);
+            background-size: 30px 30px;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23fb6f92"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
         }
 
-        /* Screen Wrapper */
         .main-container {
             width: 90%;
             max-width: 600px;
-            height: 80vh;
+            height: 90vh;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Screens */
         .screen {
             position: absolute;
             width: 100%;
@@ -60,7 +55,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             text-align: center;
             padding: 20px;
         }
@@ -68,71 +63,77 @@
         .hidden {
             opacity: 0;
             pointer-events: none;
-            transform: translateY(20px);
+            transform: scale(0.8) translateY(30px);
             z-index: -1;
         }
 
         .active {
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1) translateY(0);
             z-index: 10;
         }
 
-        /* Cute Title Styling */
+        /* Typography */
         h1.cute-title {
             font-family: 'Pacifico', cursive;
-            color: var(--accent-pink);
-            font-size: 3rem;
+            color: var(--deep-pink);
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 0px #fff;
+            text-shadow: 3px 3px 0px rgba(255,255,255,0.8);
+            line-height: 1.2;
         }
 
         p.cute-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 30px;
-            max-width: 400px;
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
         }
 
-        /* Cute Button Style */
+        /* Buttons */
         .btn-cute {
-            background-color: var(--primary-pink);
+            background: linear-gradient(135deg, var(--accent-pink), var(--deep-pink));
             color: white;
             border: none;
-            padding: 15px 35px;
+            padding: 15px 40px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 183, 197, 0.4);
+            box-shadow: 0 10px 20px rgba(251, 111, 146, 0.3);
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
         }
 
         .btn-cute:hover {
-            background-color: var(--accent-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 143, 163, 0.6);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(251, 111, 146, 0.5);
         }
 
-        /* Envelope Styling (More intricate and cute) */
+        /* Envelope */
         .envelope-wrapper {
             cursor: pointer;
             position: relative;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
+            margin-bottom: 20px;
         }
 
         .envelope-wrapper:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(-2deg);
         }
 
         .envelope {
             position: relative;
-            width: 280px;
-            height: 180px;
-            background-color: var(--envelope-color);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 300px;
+            height: 200px;
+            background-color: #ffc2d1;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .envelope::before {
@@ -140,12 +141,12 @@
             position: absolute;
             top: 0;
             z-index: 2;
-            border-top: 100px solid var(--primary-pink);
-            border-left: 140px solid transparent;
-            border-right: 140px solid transparent;
+            border-top: 110px solid var(--accent-pink);
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
             transform-origin: top;
-            transition: transform 0.4s ease-in-out;
-            border-radius: 10px 10px 0 0;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px 15px 0 0;
         }
 
         .envelope::after {
@@ -153,93 +154,94 @@
             position: absolute;
             z-index: 1;
             top: 0;
-            width: 280px;
-            height: 180px;
-            background-color: var(--envelope-color);
-            border-radius: 10px;
+            width: 300px;
+            height: 200px;
+            background-color: #ffc2d1;
+            border-radius: 15px;
         }
 
         .heart-seal {
             position: absolute;
-            top: 90px;
+            top: 100px;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 3;
-            color: var(--heart-color);
-            font-size: 3rem;
-            transition: transform 0.4s ease-in-out, opacity 0.2s ease-in-out;
+            color: var(--deep-pink);
+            font-size: 3.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            animation: pulse 1.5s infinite;
         }
 
-        /* Opened state */
         .envelope-wrapper.open .envelope::before {
             transform: rotateX(180deg);
             z-index: 0;
         }
 
         .envelope-wrapper.open .heart-seal {
-            transform: translate(-50%, -150%) scale(0.5);
+            transform: translate(-50%, -200%) scale(0);
             opacity: 0;
         }
 
-        .tap-instruction {
-            margin-top: 20px;
-            font-style: italic;
-            color: var(--accent-pink);
-            animation: breathe 2s infinite;
-        }
-
-        /* Letter Styling */
+        /* The Letter */
         .letter-card {
-            background-color: var(--letter-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(89, 13, 34, 0.1);
             width: 100%;
-            max-height: 100%;
+            max-height: 90vh;
             overflow-y: auto;
             text-align: left;
             position: relative;
+            border: 3px solid var(--primary-pink);
         }
 
-        /* Decorative hearts in the corner */
-        .letter-card::before {
-            content: '❤️';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            opacity: 0.5;
+        /* Photo Frame inside letter */
+        .photo-frame {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            border: 4px solid var(--primary-pink);
+            box-shadow: 0 8px 20px rgba(251, 111, 146, 0.3);
+            overflow: hidden;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .letter-card h2 {
             font-family: 'Pacifico', cursive;
-            color: var(--accent-pink);
-            margin-bottom: 20px;
+            color: var(--deep-pink);
+            margin-bottom: 25px;
             font-size: 2.2rem;
             text-align: center;
         }
 
         .letter-card p {
             font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            font-size: 1rem;
+            font-weight: 400;
+            font-size: 1.05rem;
             line-height: 1.8;
-            margin-bottom: 15px;
-            color: var(--text-color);
+            margin-bottom: 18px;
+            color: #4a4a4a;
         }
 
-        /* Runaway Button Area */
+        /* Runaway Button Setup */
         .decision-area {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
-        }
-
-        .decision-question {
-            font-family: 'Varela Round', sans-serif;
-            font-weight: 600;
-            font-size: 1.3rem;
-            color: var(--accent-pink);
-            margin-bottom: 25px;
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 20px;
         }
 
         .button-group {
@@ -247,259 +249,258 @@
             justify-content: center;
             gap: 20px;
             position: relative;
-            height: 60px;
-            max-width: 300px;
-            margin: 0 auto;
+            height: 50px;
+            margin-top: 15px;
         }
 
         .btn-final {
-            padding: 12px 30px;
+            padding: 12px 35px;
             border: none;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.2s ease;
             font-family: 'Poppins', sans-serif;
         }
 
         .btn-yes {
-            background-color: #81ecec; /* Cute cyan */
-            color: #2d3436;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
+            z-index: 5;
         }
 
         .btn-yes:hover {
-            background-color: #00cec9;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .btn-no {
-            background-color: #ff7675; /* Cute red/pink */
+            background: linear-gradient(135deg, var(--accent-pink), var(--deep-pink));
             color: white;
             position: absolute;
-            right: 0;
-            transition: 0.2s ease-out; /* Crucial for smoothness */
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 100;
         }
 
-        /* Floating Hearts Animation Background */
-        .hearts-bg {
+        /* Particles Layer */
+        .particles-bg {
             position: absolute;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
             overflow: hidden;
-            top: 0;
-            left: 0;
-            z-index: -1;
+            pointer-events: none;
         }
 
-        .heart-particle {
+        .particle {
             position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-pink);
-            transform: rotate(-45deg);
-            opacity: 0.4;
-            animation: floatHeart 10s infinite ease-in;
-            bottom: -50px;
+            opacity: 0;
+            animation: floatUp 8s linear infinite;
         }
 
-        .heart-particle:before,
-        .heart-particle:after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-pink);
-            border-radius: 50%;
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.15); }
+            100% { transform: translate(-50%, -50%) scale(1); }
         }
 
-        .heart-particle:before {
-            top: -10px;
-            left: 0;
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
 
-        .heart-particle:after {
-            top: 0;
-            left: 10px;
+        /* Final Celebration Animation */
+        .celebration-text {
+            font-family: 'Pacifico', cursive;
+            color: var(--deep-pink);
+            font-size: 4rem;
+            animation: popIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
-        /* Animations */
-        @keyframes breathe {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        @keyframes floatHeart {
-            0% { transform: rotate(-45deg) translateY(0) scale(0.5); opacity: 0.4; }
-            100% { transform: rotate(-45deg) translateY(-100vh) scale(1.2); opacity: 0; }
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            h1.cute-title { font-size: 2.2rem; }
-            .letter-card { padding: 25px; }
-            .envelope { width: 240px; height: 160px; }
-            .envelope::before { border-top-width: 90px; border-left-width: 120px; border-right-width: 120px; }
-            .envelope::after { width: 240px; height: 160px; }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
     </style>
 </head>
 <body>
 
-    <div class="hearts-bg" id="hearts-bg">
-        </div>
+    <div class="particles-bg" id="particles-bg"></div>
 
     <div class="main-container">
         
+        <!-- Screen 1: Intro -->
         <div id="screen-intro" class="screen active">
-            <h1 class="cute-title">Hi Ayuu...</h1>
-            <p class="cute-text">I made something special just for you. I was hoping you might take a look?</p>
-            <button class="btn-cute" onclick="showEnvelope()">Yes, I'll look ❤️</button>
+            <h1 class="cute-title">Hi Ayuu 💕</h1>
+            <p class="cute-text">I built something special just for you. Will you take a little look?</p>
+            <button class="btn-cute" onclick="nextScreen('screen-intro', 'screen-notes')">I'll look ✨</button>
         </div>
 
+        <!-- Screen 2: Sweet Notes Transition -->
+        <div id="screen-notes" class="screen hidden">
+            <h1 class="cute-title" style="font-size: 2.5rem;">Before anything else...</h1>
+            <p class="cute-text" id="note-text">You are the most beautiful part of my life.</p>
+            <button class="btn-cute" id="note-btn" onclick="advanceNote()">Next 💖</button>
+        </div>
+
+        <!-- Screen 3: Envelope -->
         <div id="screen-envelope" class="screen hidden">
-            <h1 class="cute-title">A letter for you</h1>
+            <h1 class="cute-title" style="font-size: 2.5rem;">A letter for you 💌</h1>
             <div class="envelope-wrapper" id="envelope-wrapper" onclick="openLetter()">
                 <div class="envelope"></div>
                 <div class="heart-seal">❤️</div>
             </div>
-            <p class="tap-instruction">Tap the heart to open</p>
+            <p style="color: var(--deep-pink); font-style: italic; margin-top: 15px;">Tap the heart</p>
         </div>
 
+        <!-- Screen 4: The Letter -->
         <div id="screen-letter" class="screen hidden">
             <div class="letter-card">
+                
+                <!-- 📸 ADD YOUR PHOTO URL HERE -->
+                <div class="photo-frame">
+                    <img src="https://via.placeholder.com/150/ffb3c6/ffffff?text=Add+Photo" alt="Us" id="couple-photo">
+                </div>
+
                 <h2>My Dearest Ayuu,</h2>
-                <p>I wanted to send you this properly, because just a text message didn't feel sincere enough for how bad I feel about yesterday.</p>
-                
-                <p>I am so incredibly sorry for how I reacted when you set a boundary. I was frustrated, but that is absolutely no excuse for the pressure I put on you or the hurtful comment I made about porn. That was incredibly childish, selfish, and unfair of me, and I deeply regret it.</p>
-                
-                <p>Your comfort is the most important thing to me in this relationship. You have every right to decide what you are comfortable with, and I promise to fully respect your boundaries without making you feel guilty or pressured. I want you to feel safe and respected with me, always.</p>
-                
-                <p>I love you so much, Ayuu, and I will do better.</p>
-                
-                <p style="text-align: right; font-family: 'Pacifico', cursive; margin-top: 20px;">Always yours,</p>
+                <p>I wanted to give you something more than just a text message, because I really need you to know how sorry I am about yesterday.</p>
+                <p>When you set a boundary with me, I should have completely respected it with love. Instead, I let my frustration get the better of me, and making that comment about porn was totally out of line. It was childish, and it unfairly made you feel pressured for simply prioritizing your own comfort.</p>
+                <p>Your boundaries are completely safe with me, and I promise to be a partner who respects them without making you feel guilty. You mean everything to me, and I never want to make you feel bad.</p>
                 
                 <div class="decision-area">
-                    <p class="decision-question">Can you forgive me? 🥺</p>
-                    <div class="button-group" id="button-container">
-                        <button class="btn-final btn-yes" onclick="forgiven()">Yes</button>
+                    <h3 style="color: var(--deep-pink); font-family: 'Pacifico', cursive; font-size: 1.8rem;">Can you forgive me? 🥺</h3>
+                    <div class="button-group" id="btn-group">
+                        <button class="btn-final btn-yes" onclick="celebrate()">Yes</button>
                         <button class="btn-final btn-no" id="no-btn">No</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Screen 5: Success -->
+        <div id="screen-success" class="screen hidden">
+            <h1 class="celebration-text">Thank You! 🥰</h1>
+            <p class="cute-text" style="font-size: 1.5rem; margin-top: 20px;">I love you more than anything, Ayuu. I promise to always be better for you.</p>
+        </div>
+
     </div>
 
     <script>
-        // --- Page Transitions ---
-        function showEnvelope() {
-            transitionScreens('screen-intro', 'screen-envelope');
+        // --- Navigation Logic ---
+        function nextScreen(hideId, showId) {
+            const hide = document.getElementById(hideId);
+            const show = document.getElementById(showId);
+            
+            hide.classList.remove('active');
+            hide.classList.add('hidden');
+            
+            setTimeout(() => {
+                show.classList.remove('hidden');
+                show.classList.add('active');
+            }, 500);
         }
 
+        // --- Sweet Notes Logic ---
+        const notes = [
+            "You are the most beautiful part of my life.",
+            "Your happiness means the absolute world to me.",
+            "And I always want to make you feel safe and loved."
+        ];
+        let noteIndex = 0;
+
+        function advanceNote() {
+            noteIndex++;
+            if (noteIndex < notes.length) {
+                const noteEl = document.getElementById('note-text');
+                noteEl.style.opacity = 0;
+                setTimeout(() => {
+                    noteEl.innerText = notes[noteIndex];
+                    noteEl.style.opacity = 1;
+                    if(noteIndex === notes.length - 1) {
+                        document.getElementById('note-btn').innerText = "Read my letter 💌";
+                    }
+                }, 300);
+            } else {
+                nextScreen('screen-notes', 'screen-envelope');
+            }
+        }
+
+        // --- Envelope Logic ---
         function openLetter() {
             const wrapper = document.getElementById('envelope-wrapper');
-            wrapper.classList.add('open'); // Trigger flap animation
-            
-            // Wait for animation, then hide envelope screen and show letter screen
+            wrapper.classList.add('open');
             setTimeout(() => {
-                transitionScreens('screen-envelope', 'screen-letter');
-            }, 800);
+                nextScreen('screen-envelope', 'screen-letter');
+            }, 900);
         }
 
-        function forgiven() {
-            // Remove the interactive decision area
-            document.querySelector('.decision-area').innerHTML = `
-                <h1 class="cute-title" style="font-size: 2.5rem; margin-top: 30px;">Thank You! ❤️</h1>
-                <p class="cute-text" style="text-align:center;">I love you so much, Ayuu. I won't let you down.</p>
-            `;
-            // Make more hearts spawn!
-            setInterval(createHeart, 100);
-        }
-
-        // Helper function for smooth screen swaps
-        function transitionScreens(hideId, showId) {
-            const hideScreen = document.getElementById(hideId);
-            const showScreen = document.getElementById(showId);
-            
-            hideScreen.classList.remove('active');
-            hideScreen.classList.add('hidden');
-            
-            setTimeout(() => {
-                showScreen.classList.remove('hidden');
-                showScreen.classList.add('active');
-            }, 300); // Small delay allows first screen to start fading
-        }
-
-
-        // --- The Runaway "No" Button Logic ---
+        // --- Runaway Button Logic ---
         const noBtn = document.getElementById('no-btn');
-        const container = document.getElementById('button-container');
+        const btnGroup = document.getElementById('btn-group');
 
-        // This keeps the button from running too far away on mobile
-        function getSafeMoveArea() {
-            const containerRect = container.getBoundingClientRect();
+        function moveNoButton() {
+            const groupRect = btnGroup.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
             
-            // Allow the button to move within the width of the letter, but stay near the 'Yes' button
-            return {
-                maxX: containerRect.width - btnRect.width,
-                maxY: 80 // Max vertical movement up/down
-            };
-        }
-        
-        function moveButton() {
-            const area = getSafeMoveArea();
+            // Calculate a random distance away from the cursor
+            let newX = (Math.random() * 150) - 75; // Left or right shift
+            let newY = (Math.random() * -100) - 20; // Moves up away from click
             
-            // Calculate a semi-random position that feels random but stays safe
-            let randomX = Math.random() * area.maxX;
-            // Ensure it moves *away* from its original 'right: 0' position
-            if(randomX < area.maxX / 2) randomX -= area.maxX; 
+            // Ensure it actually jumps away
+            if (Math.abs(newX) < 40) newX = newX < 0 ? -60 : 60;
 
-            // Small random vertical shift
-            const randomY = (Math.random() * area.maxY) - (area.maxY / 2); 
-
-            // Using translate prevents breaking the layout
-            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-            noBtn.style.zIndex = "100"; // Ensure it stays on top
+            noBtn.style.transform = `translate(${newX}px, ${newY}px)`;
         }
 
-        // Mouse (desktop) and Touch (mobile) events
-        noBtn.addEventListener('mouseover', moveButton);
-        noBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevents the actual tap from registering
-            moveButton();
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
         });
 
+        // --- Final Celebration & Particles ---
+        const emojis = ['❤️', '✨', '💖', '🌸', '🥺'];
+        const bg = document.getElementById('particles-bg');
 
-        // --- Decorative Background Hearts ---
-        function createHeart() {
-            const heartsBg = document.getElementById('hearts-bg');
-            const heart = document.createElement('div');
-            heart.classList.add('heart-particle');
+        function createParticle(burst = false) {
+            const p = document.createElement('div');
+            p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            p.classList.add('particle');
             
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 3 + 6 + "s"; // 6-9 seconds
-            heart.style.opacity = Math.random() * 0.4 + 0.1; // Random transparency
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.fontSize = (Math.random() * 20 + 15) + 'px';
             
-            const size = Math.random() * 15 + 10 + "px"; // 10-25px
-            heart.style.width = size;
-            heart.style.height = size;
-            // The pseudo-elements before/after also need resizing for the heart shape
-            // (CSS variables are cleaner but keeping it simple here)
-            
-            heartsBg.appendChild(heart);
-            
-            // Clean up old hearts
-            setTimeout(() => {
-                heart.remove();
-            }, 9000);
+            if (burst) {
+                // Faster animation for celebration
+                p.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                p.style.bottom = '-10%';
+            } else {
+                // Slow background float
+                p.style.animationDuration = (Math.random() * 5 + 7) + 's';
+            }
+
+            bg.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
         }
 
-        // Start creating hearts
-        setInterval(createHeart, 500);
+        // Start ambient particles
+        setInterval(() => createParticle(false), 800);
 
+        function celebrate() {
+            nextScreen('screen-letter', 'screen-success');
+            
+            // Confetti burst!
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => createParticle(true), i * 50);
+            }
+            setInterval(() => createParticle(true), 200);
+        }
     </script>
 </body>
 </html>

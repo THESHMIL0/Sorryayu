@@ -3,223 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Update for Ayuu</title>
+    <title>A Message for Ayuu ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        /* Define cute fonts from Google */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Varela+Round&family=Pacifico&display=swap');
+
+        :root {
+            /* Cute Color Palette */
+            --bg-color: #fff5f8;
+            --primary-pink: #ffb7c5; /* Soft pink */
+            --accent-pink: #ff8fa3;  /* Darker pink */
+            --text-color: #5d4037;   /* Soft brown for readability */
+            --envelope-color: #ffe3e3;
+            --letter-bg: #ffffff;
+            --heart-color: #ff6b81;
+        }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #0f172a;
-            color: #fff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Varela Round', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            /* Decorative background gradient */
+            background-image: radial-gradient(#ffdde1 1px, transparent 1px), radial-gradient(#ffdde1 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
         }
 
-        /* Phone Container */
-        .phone-container {
-            width: 350px;
-            height: 700px;
-            background-color: #1e293b;
-            border-radius: 40px;
-            border: 8px solid #334155;
+        /* Screen Wrapper */
+        .main-container {
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Screens */
         .screen {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            text-align: center;
             padding: 20px;
-            transition: opacity 0.5s ease;
         }
 
         .hidden {
             opacity: 0;
             pointer-events: none;
+            transform: translateY(20px);
             z-index: -1;
         }
 
         .active {
             opacity: 1;
+            transform: translateY(0);
             z-index: 10;
         }
 
-        /* Screen 1: OS Alert */
-        #os-screen {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            text-align: center;
+        /* Cute Title Styling */
+        h1.cute-title {
+            font-family: 'Pacifico', cursive;
+            color: var(--accent-pink);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #fff;
         }
 
-        .alert-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px 20px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+        p.cute-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 400px;
         }
 
-        .alert-box h2 {
-            color: #ef4444;
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-
-        .alert-box p {
-            font-size: 14px;
-            color: #cbd5e1;
-            margin-bottom: 25px;
-        }
-
-        .btn-update {
-            background: #3b82f6;
+        /* Cute Button Style */
+        .btn-cute {
+            background-color: var(--primary-pink);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
+            box-shadow: 0 4px 15px rgba(255, 183, 197, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .btn-update:hover {
-            background: #2563eb;
+        .btn-cute:hover {
+            background-color: var(--accent-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 143, 163, 0.6);
         }
 
-        /* Screen 2 & 3: Envelope and Letter */
-        #envelope-screen {
-            background-color: #fce7f3;
-            color: #333;
+        /* Envelope Styling (More intricate and cute) */
+        .envelope-wrapper {
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05);
         }
 
         .envelope {
-            width: 250px;
-            height: 150px;
-            background: #f472b6;
             position: relative;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .envelope:hover {
-            transform: translateY(-5px);
+            width: 280px;
+            height: 180px;
+            background-color: var(--envelope-color);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .envelope::before {
-            content: "Tap to Open";
+            content: '';
             position: absolute;
-            top: 50%;
+            top: 0;
+            z-index: 2;
+            border-top: 100px solid var(--primary-pink);
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s ease-in-out;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            width: 280px;
+            height: 180px;
+            background-color: var(--envelope-color);
+            border-radius: 10px;
+        }
+
+        .heart-seal {
+            position: absolute;
+            top: 90px;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
-            font-weight: 600;
-            z-index: 5;
+            z-index: 3;
+            color: var(--heart-color);
+            font-size: 3rem;
+            transition: transform 0.4s ease-in-out, opacity 0.2s ease-in-out;
         }
 
-        .letter-container {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 90%;
-            max-height: 85%;
+        /* Opened state */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper.open .heart-seal {
+            transform: translate(-50%, -150%) scale(0.5);
+            opacity: 0;
+        }
+
+        .tap-instruction {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--accent-pink);
+            animation: breathe 2s infinite;
+        }
+
+        /* Letter Styling */
+        .letter-card {
+            background-color: var(--letter-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            width: 100%;
+            max-height: 100%;
             overflow-y: auto;
             text-align: left;
+            position: relative;
         }
 
-        .letter-container h2 {
-            color: #be185d;
+        /* Decorative hearts in the corner */
+        .letter-card::before {
+            content: '❤️';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .letter-card h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .letter-card p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.8;
             margin-bottom: 15px;
-            font-size: 20px;
+            color: var(--text-color);
         }
 
-        .letter-container p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #475569;
-            margin-bottom: 15px;
+        /* Runaway Button Area */
+        .decision-area {
+            margin-top: 40px;
+            text-align: center;
         }
 
-        /* Runaway Buttons */
+        .decision-question {
+            font-family: 'Varela Round', sans-serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--accent-pink);
+            margin-bottom: 25px;
+        }
+
         .button-group {
             display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
+            justify-content: center;
+            gap: 20px;
             position: relative;
-            height: 50px;
+            height: 60px;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
-        .btn {
-            padding: 10px 20px;
+        .btn-final {
+            padding: 12px 30px;
             border: none;
-            border-radius: 20px;
+            border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            color: white;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
         }
 
         .btn-yes {
-            background: #10b981;
-            width: 45%;
+            background-color: #81ecec; /* Cute cyan */
+            color: #2d3436;
+        }
+
+        .btn-yes:hover {
+            background-color: #00cec9;
+            transform: scale(1.05);
         }
 
         .btn-no {
-            background: #ef4444;
-            width: 45%;
+            background-color: #ff7675; /* Cute red/pink */
+            color: white;
             position: absolute;
             right: 0;
-            transition: 0.2s ease-out; /* Smooth escaping */
+            transition: 0.2s ease-out; /* Crucial for smoothness */
         }
+
+        /* Floating Hearts Animation Background */
+        .hearts-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .heart-particle {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-pink);
+            transform: rotate(-45deg);
+            opacity: 0.4;
+            animation: floatHeart 10s infinite ease-in;
+            bottom: -50px;
+        }
+
+        .heart-particle:before,
+        .heart-particle:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+        }
+
+        .heart-particle:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart-particle:after {
+            top: 0;
+            left: 10px;
+        }
+
+        /* Animations */
+        @keyframes breathe {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        @keyframes floatHeart {
+            0% { transform: rotate(-45deg) translateY(0) scale(0.5); opacity: 0.4; }
+            100% { transform: rotate(-45deg) translateY(-100vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            h1.cute-title { font-size: 2.2rem; }
+            .letter-card { padding: 25px; }
+            .envelope { width: 240px; height: 160px; }
+            .envelope::before { border-top-width: 90px; border-left-width: 120px; border-right-width: 120px; }
+            .envelope::after { width: 240px; height: 160px; }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="phone-container">
+    <div class="hearts-bg" id="hearts-bg">
+        </div>
+
+    <div class="main-container">
         
-        <div id="os-screen" class="screen active">
-            <div class="alert-box">
-                <h2>⚠️ Critical Error: Boyfriend Malfunction</h2>
-                <p>System detected an unfair reaction and a lapse in judgment yesterday. A patch update has been developed to fix this bug.</p>
-                <button class="btn-update" onclick="showEnvelope()">Install Update & View Patch Notes</button>
+        <div id="screen-intro" class="screen active">
+            <h1 class="cute-title">Hi Ayuu...</h1>
+            <p class="cute-text">I made something special just for you. I was hoping you might take a look?</p>
+            <button class="btn-cute" onclick="showEnvelope()">Yes, I'll look ❤️</button>
+        </div>
+
+        <div id="screen-envelope" class="screen hidden">
+            <h1 class="cute-title">A letter for you</h1>
+            <div class="envelope-wrapper" id="envelope-wrapper" onclick="openLetter()">
+                <div class="envelope"></div>
+                <div class="heart-seal">❤️</div>
             </div>
+            <p class="tap-instruction">Tap the heart to open</p>
         </div>
 
-        <div id="envelope-screen" class="screen hidden">
-            <div class="envelope" onclick="openLetter()"></div>
-        </div>
-
-        <div id="letter-screen" class="screen hidden" style="background-color: #fce7f3;">
-            <div class="letter-container">
-                <h2>I am so sorry, Ayuu.</h2>
-                <p>I wanted to properly apologize for how I acted yesterday. What I said out of frustration was completely unfair to you, and I was wrong to say it.</p>
-                <p>You have every right to set boundaries around your comfort, and I should have just respected that instead of making you feel guilty. Your feelings and your boundaries mean everything to me, and I promise to be better at respecting them without making it an issue.</p>
-                <p>You mean the world to me, and I hate that I made you feel bad.</p>
+        <div id="screen-letter" class="screen hidden">
+            <div class="letter-card">
+                <h2>My Dearest Ayuu,</h2>
+                <p>I wanted to send you this properly, because just a text message didn't feel sincere enough for how bad I feel about yesterday.</p>
                 
-                <h3 style="text-align: center; color: #be185d; margin-top: 20px;">Can you forgive me?</h3>
+                <p>I am so incredibly sorry for how I reacted when you set a boundary. I was frustrated, but that is absolutely no excuse for the pressure I put on you or the hurtful comment I made about porn. That was incredibly childish, selfish, and unfair of me, and I deeply regret it.</p>
                 
-                <div class="button-group">
-                    <button class="btn btn-yes" onclick="forgiven()">Yes</button>
-                    <button class="btn btn-no" id="no-btn">No</button>
+                <p>Your comfort is the most important thing to me in this relationship. You have every right to decide what you are comfortable with, and I promise to fully respect your boundaries without making you feel guilty or pressured. I want you to feel safe and respected with me, always.</p>
+                
+                <p>I love you so much, Ayuu, and I will do better.</p>
+                
+                <p style="text-align: right; font-family: 'Pacifico', cursive; margin-top: 20px;">Always yours,</p>
+                
+                <div class="decision-area">
+                    <p class="decision-question">Can you forgive me? 🥺</p>
+                    <div class="button-group" id="button-container">
+                        <button class="btn-final btn-yes" onclick="forgiven()">Yes</button>
+                        <button class="btn-final btn-no" id="no-btn">No</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -227,49 +393,113 @@
     </div>
 
     <script>
-        // Screen Transitions
+        // --- Page Transitions ---
         function showEnvelope() {
-            document.getElementById('os-screen').classList.remove('active');
-            document.getElementById('os-screen').classList.add('hidden');
-            
-            document.getElementById('envelope-screen').classList.remove('hidden');
-            document.getElementById('envelope-screen').classList.add('active');
+            transitionScreens('screen-intro', 'screen-envelope');
         }
 
         function openLetter() {
-            document.getElementById('envelope-screen').classList.remove('active');
-            document.getElementById('envelope-screen').classList.add('hidden');
+            const wrapper = document.getElementById('envelope-wrapper');
+            wrapper.classList.add('open'); // Trigger flap animation
             
-            document.getElementById('letter-screen').classList.remove('hidden');
-            document.getElementById('letter-screen').classList.add('active');
+            // Wait for animation, then hide envelope screen and show letter screen
+            setTimeout(() => {
+                transitionScreens('screen-envelope', 'screen-letter');
+            }, 800);
         }
 
         function forgiven() {
-            alert("Thank you, Ayuu. I love you! ❤️");
+            // Remove the interactive decision area
+            document.querySelector('.decision-area').innerHTML = `
+                <h1 class="cute-title" style="font-size: 2.5rem; margin-top: 30px;">Thank You! ❤️</h1>
+                <p class="cute-text" style="text-align:center;">I love you so much, Ayuu. I won't let you down.</p>
+            `;
+            // Make more hearts spawn!
+            setInterval(createHeart, 100);
         }
 
-        // The Runaway "No" Button Logic
+        // Helper function for smooth screen swaps
+        function transitionScreens(hideId, showId) {
+            const hideScreen = document.getElementById(hideId);
+            const showScreen = document.getElementById(showId);
+            
+            hideScreen.classList.remove('active');
+            hideScreen.classList.add('hidden');
+            
+            setTimeout(() => {
+                showScreen.classList.remove('hidden');
+                showScreen.classList.add('active');
+            }, 300); // Small delay allows first screen to start fading
+        }
+
+
+        // --- The Runaway "No" Button Logic ---
         const noBtn = document.getElementById('no-btn');
+        const container = document.getElementById('button-container');
+
+        // This keeps the button from running too far away on mobile
+        function getSafeMoveArea() {
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Allow the button to move within the width of the letter, but stay near the 'Yes' button
+            return {
+                maxX: containerRect.width - btnRect.width,
+                maxY: 80 // Max vertical movement up/down
+            };
+        }
         
         function moveButton() {
-            // Get boundaries of the letter container to keep the button inside
-            const container = document.querySelector('.button-group');
-            const containerRect = container.getBoundingClientRect();
+            const area = getSafeMoveArea();
             
-            // Calculate random positions
-            const randomX = Math.floor(Math.random() * (containerRect.width - noBtn.clientWidth));
-            const randomY = Math.floor(Math.random() * 100) - 50; // Moves up and down slightly
+            // Calculate a semi-random position that feels random but stays safe
+            let randomX = Math.random() * area.maxX;
+            // Ensure it moves *away* from its original 'right: 0' position
+            if(randomX < area.maxX / 2) randomX -= area.maxX; 
 
-            noBtn.style.transform = `translate(${-randomX}px, ${randomY}px)`;
+            // Small random vertical shift
+            const randomY = (Math.random() * area.maxY) - (area.maxY / 2); 
+
+            // Using translate prevents breaking the layout
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            noBtn.style.zIndex = "100"; // Ensure it stays on top
         }
 
-        // Works for mouse and touchscreens
+        // Mouse (desktop) and Touch (mobile) events
         noBtn.addEventListener('mouseover', moveButton);
         noBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevents tapping it
+            e.preventDefault(); // Prevents the actual tap from registering
             moveButton();
         });
-    </script>
 
+
+        // --- Decorative Background Hearts ---
+        function createHeart() {
+            const heartsBg = document.getElementById('hearts-bg');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 6 + "s"; // 6-9 seconds
+            heart.style.opacity = Math.random() * 0.4 + 0.1; // Random transparency
+            
+            const size = Math.random() * 15 + 10 + "px"; // 10-25px
+            heart.style.width = size;
+            heart.style.height = size;
+            // The pseudo-elements before/after also need resizing for the heart shape
+            // (CSS variables are cleaner but keeping it simple here)
+            
+            heartsBg.appendChild(heart);
+            
+            // Clean up old hearts
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+        // Start creating hearts
+        setInterval(createHeart, 500);
+
+    </script>
 </body>
 </html>

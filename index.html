@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Update for Ayuu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Phone Container */
+        .phone-container {
+            width: 350px;
+            height: 700px;
+            background-color: #1e293b;
+            border-radius: 40px;
+            border: 8px solid #334155;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Screens */
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Screen 1: OS Alert */
+        #os-screen {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            text-align: center;
+        }
+
+        .alert-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .alert-box h2 {
+            color: #ef4444;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .alert-box p {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .btn-update {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-update:hover {
+            background: #2563eb;
+        }
+
+        /* Screen 2 & 3: Envelope and Letter */
+        #envelope-screen {
+            background-color: #fce7f3;
+            color: #333;
+        }
+
+        .envelope {
+            width: 250px;
+            height: 150px;
+            background: #f472b6;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .envelope:hover {
+            transform: translateY(-5px);
+        }
+
+        .envelope::before {
+            content: "Tap to Open";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        .letter-container {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 90%;
+            max-height: 85%;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .letter-container h2 {
+            color: #be185d;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .letter-container p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #475569;
+            margin-bottom: 15px;
+        }
+
+        /* Runaway Buttons */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            position: relative;
+            height: 50px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-yes {
+            background: #10b981;
+            width: 45%;
+        }
+
+        .btn-no {
+            background: #ef4444;
+            width: 45%;
+            position: absolute;
+            right: 0;
+            transition: 0.2s ease-out; /* Smooth escaping */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        
+        <div id="os-screen" class="screen active">
+            <div class="alert-box">
+                <h2>⚠️ Critical Error: Boyfriend Malfunction</h2>
+                <p>System detected an unfair reaction and a lapse in judgment yesterday. A patch update has been developed to fix this bug.</p>
+                <button class="btn-update" onclick="showEnvelope()">Install Update & View Patch Notes</button>
+            </div>
+        </div>
+
+        <div id="envelope-screen" class="screen hidden">
+            <div class="envelope" onclick="openLetter()"></div>
+        </div>
+
+        <div id="letter-screen" class="screen hidden" style="background-color: #fce7f3;">
+            <div class="letter-container">
+                <h2>I am so sorry, Ayuu.</h2>
+                <p>I wanted to properly apologize for how I acted yesterday. What I said out of frustration was completely unfair to you, and I was wrong to say it.</p>
+                <p>You have every right to set boundaries around your comfort, and I should have just respected that instead of making you feel guilty. Your feelings and your boundaries mean everything to me, and I promise to be better at respecting them without making it an issue.</p>
+                <p>You mean the world to me, and I hate that I made you feel bad.</p>
+                
+                <h3 style="text-align: center; color: #be185d; margin-top: 20px;">Can you forgive me?</h3>
+                
+                <div class="button-group">
+                    <button class="btn btn-yes" onclick="forgiven()">Yes</button>
+                    <button class="btn btn-no" id="no-btn">No</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Screen Transitions
+        function showEnvelope() {
+            document.getElementById('os-screen').classList.remove('active');
+            document.getElementById('os-screen').classList.add('hidden');
+            
+            document.getElementById('envelope-screen').classList.remove('hidden');
+            document.getElementById('envelope-screen').classList.add('active');
+        }
+
+        function openLetter() {
+            document.getElementById('envelope-screen').classList.remove('active');
+            document.getElementById('envelope-screen').classList.add('hidden');
+            
+            document.getElementById('letter-screen').classList.remove('hidden');
+            document.getElementById('letter-screen').classList.add('active');
+        }
+
+        function forgiven() {
+            alert("Thank you, Ayuu. I love you! ❤️");
+        }
+
+        // The Runaway "No" Button Logic
+        const noBtn = document.getElementById('no-btn');
+        
+        function moveButton() {
+            // Get boundaries of the letter container to keep the button inside
+            const container = document.querySelector('.button-group');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Calculate random positions
+            const randomX = Math.floor(Math.random() * (containerRect.width - noBtn.clientWidth));
+            const randomY = Math.floor(Math.random() * 100) - 50; // Moves up and down slightly
+
+            noBtn.style.transform = `translate(${-randomX}px, ${randomY}px)`;
+        }
+
+        // Works for mouse and touchscreens
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevents tapping it
+            moveButton();
+        });
+    </script>
+
+</body>
+</html>
